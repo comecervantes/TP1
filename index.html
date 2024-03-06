@@ -12,6 +12,7 @@
 
 <h2> Avant Propos </h2>
 
+<p>
 _**Équipe ROYROUX5**_
 
 Un matin de novembre empreint de douceur, Jean-Félix découvrit le projet fondation. Inspiré par cette opportunité, il
@@ -57,7 +58,7 @@ et d'autres capteurs optiques est envisagée pour accroître la précision des d
 synthèse écrits, démontrant notre capacité à exceller et à innover. Notre équipe embrasse pleinement ce défi,
 considérant chaque obstacle comme une opportunité d'innovation. Nous sommes impatients de partager nos progrès et de
 démontrer la puissance de la collaboration et de l'ingéniosité au sein de l'équipe des ROYROUX5.
-
+</p>
 
 <h1> Equipe </h1>
 
@@ -76,28 +77,35 @@ démontrer la puissance de la collaboration et de l'ingéniosité au sein de l'�
 
 <h2> I. Objectif </h2>
 
+<p>
 Tout d'abord, clarifions notre objectif principal : développer un système de reconnaissance d'images qui puisse non
 seulement repérer les contours de notre environnement, où le robot sera positionné, mais aussi identifier les divers
 objets présents.
 Par ailleurs, il est essentiel d'accorder une attention particulière à l'étape de calibrage des couleurs sur le plan.
 Cette étape revêt une importance cruciale pour garantir la fiabilité de notre système de reconnaissance d'objets.
+</p>
 
 <h2> II. Glossaire </h2>
 
+<p>
 Avant de commencer les explications voici une explication des différents termes et acronymes que nous utiliserons par la
 suite.
 
 Aruco -> Marqueur contenant un code binaire
+</p>
 
 <h3> A. Termes </h3>
 
+<p>
 Terme Définition
 Aruco Un marqueur contenant un code binaire
+</p>
 
 <h2> III. Conception Technique </h2>
 
 <h3> A. Avant-propos </h3>
 
+<p>
 Avant de commencer à concevoir une solution technique pour notre projet nous avons dû réfléchir à quel moyen utiliser
 pour la concevoir. En effectuant quelques recherches sur internet nous avons rapidement remarqué que la conception d’un
 système de reconnaissance d’image comme celui que l’on souhaite faire peut se faire en C++ ainsi qu’en Python.
@@ -107,9 +115,11 @@ et de l’accessibilité de ce langage.
 Puis nous avons diviser cette partie du projet en deux grandes parties, une partie qui se concentrerais sur la
 reconnaissance des Arucos et une autre partie qui se concentrera sur la reconnaissance des différents objets sur le
 plateau et dans le même temps le calibrage des couleurs.
+</p>
 
 <h3> B. Reconnaissance Aruco </h3>
 
+<p>
 Dans cette partie nous exposerons nos recherches et notre avancement à propos de la reconnaissance des Arucos.
 Pour remettre dans le contexte le but du projet est de pouvoir :
 
@@ -131,13 +141,14 @@ Cela nous sera très utile pour la reconnaissance de ces codes sur le plan étan
 d’informations comme nous le verrons par la suite.
 
 Pour que les propos suivants aient plus de contexte voici le plan sur lequel notre robot évoluera :
-
+</p>
 
 <img src="images/plan.jpg" alt="Description of the image">
 
 
 _Figure 1.1 : Photo du plan avec des objets et leurres_
 
+<p>
 On remarque sur cette photo en figure 1.1 les leurres dont nous parlions, qui sont les petits codes Aruco sur le
 terrain, mais aussi les 4 grands codes Aruco des coins qui nous permettrons de délimiter le terrain, dans cette partie
 nous ne parlerons pas des autres éléments.
@@ -153,18 +164,22 @@ l’utilisation de celle-ci dans le futur.
 
 Pour vérifier que la distinction entre les différents Arucos se fasse bien nous avons tout de même vérifié cela avec
 plusieurs codes sur la même pas comme visible en figure 1.3, notre algorithme fonctionne bien aux vues des résultats.
+</p>
 
 <img src="images/test1.png" alt="Description of the image">
 
 _Figure 1.2 : Photo de Côme_
 
+<p>
 On remarque sur l’image les bordures vertes et le code bleu au centre des Arucos, signe que notre algorithme le
 reconnait.
+</p>
 
 <img src="images/test2.png" alt="Description of the image">
 
 _Figure 1.3 : Photo du test de reconnaissance d’ID 2_
 
+<p>
 En utilisant cet algorithme sur les principaux Arucos qui nous seraient utile nous récupérons donc ces clés
 d’identification. Ainsi on note que notre robot sera l’Aruco portant le code 146 comme le numéro de notre équipe.
 Puis les quatre autres Arucos testés sont ceux des 4 coins du plan de jeu, qui nous seront utiles par la suite. On
@@ -174,12 +189,14 @@ ci-dessous.
 Maintenant nous cherchons à utiliser ces Arucos dans un autre but, il faut que nous déterminions des coordonnées grâce à
 leur positionnement par rapport à notre caméra. Schématisons la situation, nous voulons obtenir un résultat similaire au
 schéma visible en figure 1.4.
+</p>
 
 <img src="images/schema1.png" alt="Description of the image">
 
 
 _Figure 1.4 : Schéma coordonnées aruco_
 
+<p>
 Ici la bordure verte délimite la vision de notre caméra et nous devrons ressortir les valeurs de coordonnées en abscisse
 et ordonné de notre Aruco par rapport à ce que notre caméra nous renvoie. La valeur dépendra ainsi de la qualité de
 notre caméra étant donné que les coordonnées auront un équivalent en pixel.
@@ -198,12 +215,14 @@ nous sommes capable de connaitre les coordonnées de chacun des coins de nos Aru
 et toutes les zones spéciales de celui-ci.
 Le schéma de cette situation est le suivant, avec les coordonnées des différents coins nous pouvons délimiter des zones
 de cette façon :
+</p>
 
 <img src="images/schema3.png" alt="Description of the image">
 
 
 _Figures 1.6 : Délimitation des zones_
 
+<p>
 Ainsi la zone intérieure bleue serait le terrain de jeu. De plus nous pourrions déterminer des zones précise pour le
 calibrage, comme indiqué en vert sur le schéma, pour calibrer par la suite, nos couleurs dans les zones prévues pour
 cela.
@@ -215,11 +234,13 @@ est facile de récupérer les fonctions de celles-ci étant donné que ce sont d
 valeur de notre ordonnée primaire avec la cette nouvelle fonction nous obtenons les coordonnées de notre robot dans le
 plan.
 La technique mathématique n’est pas compliquée mais reste à perfectionnée mais l’idée est là.
+</p>
 
 <img src="images/schema4.png" alt="Description of the image">
 
 _Figures 1.7 : Calcul des coordonnées_
 
+<p>
 Ici de la même manière que précédemment la zone verte représente la vision de la caméra, le plan en fait partie, nous
 récoltons les cordonnées X et Y de notre robot au centre. Cependant ces coordonnées sont celles définies par rapport à
 la caméra il va nous les falloir les adapter au plan. Nous récupérons l’équation de la droite des contours du plan qui
@@ -227,9 +248,11 @@ nous permettra de récupérer la valeur d’ordonnée du robot en la substituant
 
 Ainsi nous avons rempli les objectifs demandés pour cette partie. Le code n’est pas finalisé sur la partie mathématique
 du problème mais nous travaillons dessus.
+</p>
 
 <h3> C. Calibrage des couleurs et reconnaissance d’objets </h3>
 
+<p>
 Maintenant concentrons-nous sur la partie relative à la reconnaissance de couleur et d’objets.
 Pour commencer nous avons pour cette partie utilisé la même bibliothèque que précédemment avec l’ajout du Numpy une
 autre bibliothèque qui nous permettra de gérer au mieux les valeurs utiles. Concentrons-nous d’abord sur la calibration
@@ -241,33 +264,39 @@ même fonction de la couleur des lumières de la salle mais aussi de la caméra 
 De ce fait sur le plan du jeu sont disposés deux indices de calibrages de couleurs, l’un de contraste et l’autre de
 couleur. Sur la figure ci-dessous ils sont clairement identifiables en haut à droite et en bas à gauche du terrain sous
 forme de bande.
+</p>
 
 <img src="images/plan.jpg" alt="Description of the image">
 
 
 _Figures 2.1 : Plan avec les zones de calibrage_
 
+<p>
 On remarque ainsi que dans ces zones se sont les seuls couleurs présentes, et nous avons vu précédemment comment
 déterminer la zone d’intérêt d’un algorithme en fonction d’une zone. En récupérant les valeurs de l’algorithme précédent
 il est simple de focaliser notre algorithme sur une zone de travail précise.
 Nous avons donc créé un algorithme de reconnaissance de couleur, cependant dans cette version nous lui imposons
 nous-même la couleur à reconnaitre ainsi dans cet exemple nous avions mis du rouge.
 L’algorithme nous permet de délimiter une zone où il perçoit la couleur qu’on lui a indiqué.
+</p>
 
 <img src="images/Test4.png" alt="Description of the image">
 
 
 _Figures 2.2 : Délimitation zones rouges_
 
+<p>
 Or pour la suite la logique est inverse, il va falloir que l’algorithme calibre ses valeurs de couleurs sur celles qu’il
 perçoit. Pour le premier exemple, nous avons défini une valeur de couleur minimal à capter pour le rouge et une maximal
 comme visible figure 2.3.
+</p>
 
 <img src="images/terminal2.png" alt="Description of the image">
 
 
 _Figures 2.3 : Valeurs de couleur_
 
+<p>
 Cette logique est bonne pour le début de l’algorithme mais ces valeurs devront être changées dès que l’algorithme se
 lance. Pour ce faire nous indiquerons à l’algorithme dans quelle zone effectuer sa reconnaissance à son lancement et
 réduirons la plage de valeur jusqu’à obtenir une zone couverte représentant le bon ratio en fonction de la hauteur de la
@@ -277,9 +306,11 @@ On peut facilement imaginer exécuter ce procédé une fois par couleur pour tou
 s’effectuera au lancement du projet pour calibrer nos couleurs puis l’algorithme tournera avec les valeurs récupérées au
 début. Pour encore plus de justesse on peut imaginer appeler cette fonction à intervalle régulier lors de l’exécution du
 code principale pour vérifier le calibrage.
+</p>
 
 <h2> IV. Bilan </h2>
 
+<p>
 En conclusion, notre parcours dans la conception de la solution technique pour notre projet de reconnaissance d'image a
 été marqué par une démarche réfléchie et méthodique. Le choix du langage de programmation Python s'est avéré judicieux,
 compte tenu de la richesse des ressources disponibles en ligne et de la facilité d'accès à ce langage.
@@ -301,7 +332,7 @@ mathématique de la détermination des coordonnées du robot et l'achèvement gl
 nous a permis d'explorer divers aspects de la vision par ordinateur et de renforcer nos compétences dans le domaine de
 la reconnaissance d'image. Nous sommes impatients de présenter notre travail lors de la soutenance et de partager les
 résultats finaux de notre solution.
-
+</p>
 
 </body>
 </html>
